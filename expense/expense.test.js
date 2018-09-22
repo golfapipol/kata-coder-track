@@ -1,5 +1,6 @@
 const expense = require('./expense')
 const expenseCat = require('./expenseCat')
+const expenseDay = require('./expenseDay')
 
 xdescribe('Expense AVG', () => {
     it('avg. should be 185.71', () => {
@@ -49,7 +50,7 @@ xdescribe('Expense AVG', () => {
     })
 });
 
-describe('Expense Cat', () => {
+xdescribe('Expense Cat', () => {
     it('seperate category sample data', () => {
         const list = `1 f20 t15 f40 m200 t15
 2 f10 t15 f28 g40 f499 t15
@@ -104,5 +105,72 @@ movie 1680
 stationery 332
 transportation 279
 TOTAL 6568`)
+    })
+});
+
+describe('Expense Day', () => {
+    it('seperate category sample data', () => {
+        const list = `1 f5
+2 f10
+3 f15
+4 f20
+5 f25
+6 f100
+7 f250
+8 f5
+9 f10
+10 f15
+11 f20
+12 f25
+13 f100
+14 f250`
+        expect(expenseDay(list)).toBe(`Mon 50
+Tue 200
+Wed 500
+Thu 10
+Fri 20
+Sat 30
+Sun 40`)
+    })
+
+    it('seperate category real data', () => {
+        const list = `1 g20 f26 s15 f46 f43 f49 f19 t9
+2 f68 f56 m180 f34 f67 f48
+3 g20
+4 f54
+5 g100 m300 f23 f42 f76
+6 t12 f79 g100 f21 t25
+7 g20 f42
+8
+9 s7
+10
+11
+12 g80 g20 f26 f44 f53 f65 m240 f85
+13 t67 f44 f40 f57
+14 f7
+15 f67 t18 g80 f97 s32 s13 s29
+16 s31 f10 t9
+17 f37 g100
+18
+19 t9 f25 f35 f37
+20 f65 f92 s26 f84 f22
+21 t18 f46 m180
+22 f41 f61 m260 s15 f90 s13 f16 s30
+23 s5 t20 s39 g120
+24 f35 f44
+25 s44
+26 f76 f20 g100 f57 f74
+27 t9 s28 s5 t9 f88 f42
+28 t40 f39 g140 m280 g120
+29 f17 g100 g100 f99 t16 f98 f46
+30 f37 f76 f92 m240 f27 t18
+31 f51`
+        expect(expenseDay(list)).toBe(`Mon 1587
+Tue 915
+Wed 932
+Thu 1565
+Fri 1184
+Sat 287
+Sun 98`)
     })
 });
